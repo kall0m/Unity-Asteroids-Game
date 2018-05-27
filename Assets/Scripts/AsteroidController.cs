@@ -16,15 +16,20 @@ public class AsteroidController : MonoBehaviour {
     }
 
     private float nextActionTime = 0.0f;
-    public float period = 2.0f;
+    public float shootingPeriod = 2.0f;
 
     void Update()
     {
-        if (Time.time > nextActionTime)
-        {
-            nextActionTime += period;
+        Shooter shooter = GetComponent<Shooter>();
 
-            GetComponent<Shooter>().FireProjectile();
+        if(shooter)
+        {
+            if (Time.time > nextActionTime)
+            {
+                nextActionTime += shootingPeriod;
+
+                shooter.FireProjectile();
+            }
         }
     }
 
@@ -54,14 +59,5 @@ public class AsteroidController : MonoBehaviour {
         float rotationInRad = angularSpeed * Mathf.Deg2Rad;
         Vector3 angularVelocity = new Vector3(0f, Random.Range(-rotationInRad, rotationInRad), 0);
         rigidBody.angularVelocity = angularVelocity;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-            Destroy(this.gameObject);
-        }
     }
 }
