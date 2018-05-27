@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
-  targetTag: asteroid
+  targetTag: Player
 --- !u!114 &114687035801080368
 MonoBehaviour:
   m_ObjectHideFlags: 1
