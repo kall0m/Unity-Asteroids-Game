@@ -21,9 +21,14 @@ GameObject:
   - component: {fileID: 4511323901216016}
   - component: {fileID: 33947598854426306}
   - component: {fileID: 23864345022318324}
+  - component: {fileID: 135617907151316792}
+  - component: {fileID: 54691723940446338}
+  - component: {fileID: 114273040904344444}
+  - component: {fileID: 114621190734645014}
+  - component: {fileID: 114569593071732424}
   m_Layer: 0
   m_Name: prop_asteroid_01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,3 +87,72 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1359111036815488}
   m_Mesh: {fileID: 4300002, guid: baedbbad82997f445a8cb4da210404e0, type: 3}
+--- !u!54 &54691723940446338
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359111036815488}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
+--- !u!114 &114273040904344444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359111036815488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffcf843b797abb4c814abb2258b7f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appliedForce: 100
+  angularSpeed: 50
+  shootingPeriod: 2
+--- !u!114 &114569593071732424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359111036815488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2278476e1863a024199a739111841764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  targetTag: asteroid debris
+--- !u!114 &114621190734645014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359111036815488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d452295985a9be418d0d8e35774b5aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publicHealth: 50
+  objectType: asteroid debris
+  asteroidDebris: {fileID: 0}
+  asteroidDebrisCount: 0
+--- !u!135 &135617907151316792
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359111036815488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7517462
+  m_Center: {x: 0, y: 0, z: 0}

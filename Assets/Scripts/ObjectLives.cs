@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectLives : MonoBehaviour {
 
-    private int health;
+    //private int health;
 
     public int publicHealth;
 
@@ -15,14 +15,14 @@ public class ObjectLives : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        health = publicHealth;
+        //health = publicHealth;
 	}
 	
 	public void DealDamage(int damage)
     {
-        health -= damage;
+        publicHealth -= damage;
 
-        if (health <= 0)
+        if (publicHealth <= 0)
         {
             if (objectType.Equals("asteroid"))
             {

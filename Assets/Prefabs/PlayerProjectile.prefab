@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 54772200143377114}
   - component: {fileID: 136084279184900876}
   - component: {fileID: 114068166512735550}
+  - component: {fileID: 114075986409729230}
   m_Layer: 0
   m_Name: PlayerProjectile
   m_TagString: Player
@@ -140,6 +141,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874720ad6d0a90a46ab124a64a274840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114075986409729230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2278476e1863a024199a739111841764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 34
   targetTag: Enemy
 --- !u!136 &136084279184900876
 CapsuleCollider:

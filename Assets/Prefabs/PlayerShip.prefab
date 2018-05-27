@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 135793754567461404}
   - component: {fileID: 114269642246304616}
   - component: {fileID: 114203158590657456}
+  - component: {fileID: 114925015077960686}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Player
@@ -129,6 +130,21 @@ MonoBehaviour:
   speed: 12
   rotationSpeed: 180
   halfExtents: {x: 7, y: 0, z: 5.2}
+--- !u!114 &114925015077960686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1864941408703626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d452295985a9be418d0d8e35774b5aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publicHealth: 200
+  objectType: player ship
+  asteroidDebris: {fileID: 0}
+  asteroidDebrisCount: 0
 --- !u!135 &135793754567461404
 SphereCollider:
   m_ObjectHideFlags: 1
