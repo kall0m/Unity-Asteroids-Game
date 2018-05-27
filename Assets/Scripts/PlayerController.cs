@@ -12,9 +12,17 @@ public class PlayerController : MonoBehaviour {
         AsteroidsManager.Instance.RegisterPlayer(gameObject);
     }
 
-    private GameObject playerProjectile;
-
     void Update () {
+        CheckMovementInput();
+
+        if (Input.GetKeyDown("space"))
+        {
+            GetComponent<Shooter>().FireProjectile();
+        }
+    }
+
+    void CheckMovementInput()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Quaternion offset = Quaternion.Euler(0f, horizontalInput * rotationSpeed * Time.deltaTime, 0f);
@@ -22,26 +30,11 @@ public class PlayerController : MonoBehaviour {
         Vector3 displacement = new Vector3(0f, 0f, verticalInput) * speed * Time.deltaTime;
         displacement = transform.rotation * displacement;
         Vector3 newPosition = transform.position + displacement;
-        for (int i =0; i < 3; ++i)
+        for (int i = 0; i < 3; ++i)
         {
             newPosition[i] = Mathf.Clamp(newPosition[i], -halfExtents[i], halfExtents[i]);
         }
         transform.position = newPosition;
-
-        if (Input.GetKeyDown("space"))
-        {
-            playerProjectile = (GameObject) Instantiate(Resources.Load("PlayerProjectile"));
-            FireProjectile();
-        }
-    }
-
-    public float playerProjectileSpeed = 2.0f;
-
-    void FireProjectile()
-    {
-        playerProjectile.GetComponent<Rigidbody>().position = transform.position;
-        playerProjectile.GetComponent<Rigidbody>().rotation = transform.rotation;
-        playerProjectile.GetComponent<Rigidbody>().velocity = transform.forward * playerProjectileSpeed;
     }
 
     private void OnDestroy()

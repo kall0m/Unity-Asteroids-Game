@@ -18,10 +18,14 @@ public class AsteroidsManager : MonoBehaviour {
     public float playableGridCellSize = 2.2f;
     PlayableGridCell[,] playableAreaGrid = null;
     public bool drawDebugGrid = false;
+    public GameObject asteroidPrefab;
+    public float asteroidsSpawnDelay = 15f;
+    public int maxAsteroidsCount = 4;
 
     // List of all asteroids objects in the scene
     List<GameObject> asteroids = new List<GameObject>();
     GameObject playerShip = null;
+    private float nextAsteroidSpawnTime = 0f;
 
     private void Awake()
     {
@@ -80,7 +84,12 @@ public class AsteroidsManager : MonoBehaviour {
             }
             MarkOccupiedCells(asteroid);
         }
-        MarkOccupiedCells(playerShip);
+        if(playerShip)
+        {
+            MarkOccupiedCells(playerShip);
+        }
+
+        SpawnNewAsteroids();
     }
 
     void OnDrawGizmos()
@@ -173,6 +182,17 @@ public class AsteroidsManager : MonoBehaviour {
             PlayableGridCell chosenCell = freeCells[chosenCellIndex];
             Vector3 newPosition = chosenCell.cellBounds.center;
             asteroid.GetComponent<AsteroidController>().RadomizeDirection(newPosition);
+        }
+    }
+
+    private void SpawnNewAsteroids()
+    {
+        if (asteroids.Count < maxAsteroidsCount &&
+            Time.time > nextAsteroidSpawnTime)
+        {
+            nextAsteroidSpawnTime = Time.time + asteroidsSpawnDelay;
+            GameObject newAsteroid = Instantiate(asteroidPrefab);
+            RandomizeAsteroidTransform(newAsteroid);
         }
     }
 

@@ -5,6 +5,8 @@ using UnityEngine;
 public class AsteroidController : MonoBehaviour {
 
     public float appliedForce = 20f;
+    public float angularSpeed = 5f;
+
     void Start()
     {
         //The Asteroid Manager will handle all movement of the asteroids
@@ -16,26 +18,14 @@ public class AsteroidController : MonoBehaviour {
     private float nextActionTime = 0.0f;
     public float period = 2.0f;
 
-    private GameObject enemyProjectile;
-
     void Update()
     {
         if (Time.time > nextActionTime)
         {
             nextActionTime += period;
 
-            enemyProjectile = (GameObject)Instantiate(Resources.Load("EnemyProjectile"));
-            FireProjectile();
+            GetComponent<Shooter>().FireProjectile();
         }
-    }
-
-    public float enemyProjectileSpeed = 1.5f;
-
-    void FireProjectile()
-    {
-        enemyProjectile.GetComponent<Rigidbody>().position = transform.position;
-        enemyProjectile.GetComponent<Rigidbody>().rotation = transform.rotation;
-        enemyProjectile.GetComponent<Rigidbody>().velocity = transform.forward * enemyProjectileSpeed;
     }
 
     private void OnDestroy()
@@ -45,11 +35,10 @@ public class AsteroidController : MonoBehaviour {
 
     public void RadomizeDirection(Vector3 newPosition)
     {
-        //newPosition.y = 0;
         transform.position = newPosition;
         transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
 
-        Vector3 newDirection = new Vector3(Random.Range(0f, 1f), 0, Random.Range(0f, 1f));
+        Vector3 newDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         newDirection.Normalize();
 
         //Caching the Rigid Body to avoid the slowness of getting it every time
@@ -57,11 +46,19 @@ public class AsteroidController : MonoBehaviour {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(newDirection * appliedForce);
+        RandomizeAngularVelocity();
+    }
+    private void RandomizeAngularVelocity()
+    {
+        Rigidbody rigidBody = GetComponent<Rigidbody>();
+        float rotationInRad = angularSpeed * Mathf.Deg2Rad;
+        Vector3 angularVelocity = new Vector3(0f, Random.Range(-rotationInRad, rotationInRad), 0);
+        rigidBody.angularVelocity = angularVelocity;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
             Destroy(this.gameObject);

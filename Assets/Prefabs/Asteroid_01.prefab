@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 114687035801080368}
   - component: {fileID: 135120642575912182}
   - component: {fileID: 54886934642594556}
+  - component: {fileID: 114045023488948608}
   m_Layer: 0
   m_Name: Asteroid_01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +101,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &114045023488948608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449730487373574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26aacecc345bbaf4098c1e4faf0d025d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d, type: 2}
+  projectileSpeed: 5
+  timeToLive: 3
 --- !u!114 &114687035801080368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   appliedForce: 100
-  enemyProjectile: {fileID: 0}
-  enemyProjectileSpeed: 0.2
+  angularSpeed: 50
+  period: 2
 --- !u!135 &135120642575912182
 SphereCollider:
   m_ObjectHideFlags: 1
